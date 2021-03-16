@@ -20,25 +20,42 @@ repositories {
 }
 
 dependencies {
+
+
+	//	----------------  WEBFLUX: Spring-boot-starter  ---------------------------------------
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	//	------------------------- ----------------------------------- -------------------------
+
+
+	//	----------------  CODE Simplifier: Lombok  --------------------------------------------
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	//	------------------------- ----------------------------------- -------------------------
+
+
+	//	---------------- TESTS related dependencies -------------------------------------------
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
-
-	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
-	implementation group: 'org.springdoc', name: 'springdoc-openapi-webflux-ui', version: '1.5.5'
-
-	// https://mvnrepository.com/artifact/software.amazon.awssdk/dynamodb
-	implementation group: 'software.amazon.awssdk', name: 'dynamodb', version: '2.16.19'
-
-	implementation group: 'com.github.derjust', name: 'spring-data-dynamodb', version: '5.1.0'
-
 	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
 	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.1'
-
 	// https://mvnrepository.com/artifact/org.assertj/assertj-core
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.19.0'
+	//	------------------------- ----------------------------------- -------------------------
+
+
+	//	---------------- DOCUMENTATION: SpringDoc ---------------------------------------------
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-webflux-ui', version: '1.5.5'
+	//	------------------------- ----------------------------------- -------------------------
+
+
+	//	---------------- AWSSDK to comunicate with DynamoDB -----------------------------------
+	// https://mvnrepository.com/artifact/software.amazon.awssdk/dynamodb
+	implementation group: 'software.amazon.awssdk', name: 'dynamodb', version: '2.16.19'
+	// Spring-data simplifications for working with DynamoDB
+	implementation group: 'com.github.derjust', name: 'spring-data-dynamodb', version: '5.1.0'
+	//	------------------------- ----------------------------------- -------------------------
+
 }
 
 test {
