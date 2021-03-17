@@ -1,8 +1,12 @@
-package santunioni.webflux.heroes_api.config;
+package santunioni.webflux.heroes_api.scripts;
 
 
 import java.util.Collections;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
@@ -10,25 +14,20 @@ import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
 import com.amazonaws.services.dynamodbv2.model.KeyType;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
+import santunioni.webflux.heroes_api.config.DynamoConfig;
+import santunioni.webflux.heroes_api.config.data.ConnProp;
 
 
-public class AddToHeroesTable {
+public class AddHeroesTables {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(APIConstans.);
-
-        var dynamoDB = new DynamoDB(
-                new DynamoConfig()
-                        .amazonDynamoDB()
-        );
-
-        String tableName = "heroes_table";
+        var dynamoDB = ConnProp.dynamoDB;
 
         try {
             System.out.println("Criando tabela, aguarde...");
             Table table = dynamoDB.createTable(
-                    tableName,
+                    ConnProp.tableName,
                     Collections.singletonList(
                             new KeySchemaElement("id", KeyType.HASH)),
                     Collections.singletonList(

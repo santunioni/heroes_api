@@ -5,7 +5,7 @@ app:
 
 amazon:
   dynamodb:
-    endpoint: 'http://localhost:8000'
+    endpoint: 'http://172.18.0.1:8000'
   aws:
     accesskey: 'The AWSCLI access key overrides this one.'
     secretkey: 'The AWSCLI secret key overrides this one.'

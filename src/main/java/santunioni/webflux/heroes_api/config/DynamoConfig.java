@@ -12,18 +12,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableDynamoDBRepositories
+@EnableDynamoDBRepositories(basePackages = "santunioni.webflux.heroes_api.repositories")
 public class DynamoConfig {
+
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;
-
-    @Value("${amazon.aws.sign_in_region}")
+    @Value("${amazon.aws.signInRegion}")
     private String amazonDynamoDBSignInRegion;
-
-    @Value("${amazon.aws.access_key}")
+    @Value("${amazon.aws.accessKeyId}")
     private String amazonAWSAccessKey;
-
-    @Value("${amazon.aws.secret_key}")
+    @Value("${amazon.aws.secretKey}")
     private String amazonAWSSecretKey;
 
     @Bean
@@ -35,6 +33,7 @@ public class DynamoConfig {
                         new AWSStaticCredentialsProvider(
                                 amazonAWSCredentials()
                         ));
+//                ;
         if (!amazonDynamoDBEndpoint.isEmpty()) {
             amazonDynamoDB
                     .setEndpointConfiguration(
@@ -52,4 +51,5 @@ public class DynamoConfig {
                 amazonAWSAccessKey,
                 amazonAWSSecretKey);
     }
+
 }

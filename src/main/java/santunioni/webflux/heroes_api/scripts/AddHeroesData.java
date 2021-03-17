@@ -1,20 +1,17 @@
-package santunioni.webflux.heroes_api.config;
+package santunioni.webflux.heroes_api.scripts;
 
-import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
+
+import santunioni.webflux.heroes_api.config.data.ConnProp;
 
 
 public class AddHeroesData {
     public static void main(String[] args) throws Exception {
 
-        var dynamoDB = new DynamoDB(
-                new DynamoConfig()
-                .amazonDynamoDB()
-        );
-
-        Table table = dynamoDB.getTable("heroes_table");
+        var dynamoDB = ConnProp.dynamoDB;
+        Table table = dynamoDB.getTable(ConnProp.tableName);
 
         Item hero = new Item()
                 .withPrimaryKey("id", "2")
@@ -37,7 +34,6 @@ public class AddHeroesData {
         PutItemOutcome outcome1 = table.putItem(hero);
         PutItemOutcome outcome2 = table.putItem(hero2);
         PutItemOutcome outcome3 = table.putItem(hero3);
-
     }
 
 }

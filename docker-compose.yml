@@ -1,0 +1,22 @@
+# Use root/example as user/password credentials
+version: '3.3'
+
+services:
+
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: DynamoDB
+    ports:
+      - 8000:8000
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+    networks:
+      - network-database
+
+networks:
+  network-database:
+    external:
+      name: databases
+

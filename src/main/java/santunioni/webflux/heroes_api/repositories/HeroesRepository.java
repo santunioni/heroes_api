@@ -1,4 +1,4 @@
-package santunioni.webflux.heroes_api.repository;
+package santunioni.webflux.heroes_api.repositories;
 
 import santunioni.webflux.heroes_api.model.Hero;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;

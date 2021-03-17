@@ -1,7 +1,7 @@
 package santunioni.webflux.heroes_api.service;
 
 import santunioni.webflux.heroes_api.model.Hero;
-import santunioni.webflux.heroes_api.repository.HeroesRepository;
+import santunioni.webflux.heroes_api.repositories.HeroesRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -30,7 +30,6 @@ public class HeroesService {
   public Mono<Boolean> deleteByID(String id) {
     heroesRepository.deleteById(id);
     return Mono.just(true);
-
   }
 
 }
