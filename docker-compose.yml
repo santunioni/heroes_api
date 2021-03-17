@@ -1,0 +1,35 @@
+# Use root/example as user/password credentials
+version: '3.3'
+
+services:
+
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: Heroes_API-DynamoDB
+    ports:
+      - 8000:8000
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+    networks:
+      - heroes_api_network
+
+  app-node:
+    image: heroes_api
+    container_name: Heroes_API-APP
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "dynamodb-local"
+    links:
+      - "dynamodb-local"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    networks:
+      - heroes_api_network
+
+networks:
+  heroes_api_network:
+    external:
+      name: heroes_api_network

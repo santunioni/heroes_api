@@ -7,7 +7,7 @@ spring:
 
 amazon:
   dynamodb:
-    endpoint: http://172.18.0.1:8000
+    endpoint: http://172.197.0.1:8000
   aws:
     signInRegion: east-us-1
     accessKeyId: The AWSCLI access key overrides this one.
