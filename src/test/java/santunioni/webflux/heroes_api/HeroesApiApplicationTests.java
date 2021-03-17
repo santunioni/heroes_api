@@ -12,7 +12,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static santunioni.webflux.heroes_api.constants.HeroesConstant.HEROES_ENDPOINT_LOCAL;
+import static santunioni.webflux.heroes_api.config.APIConstants.HEROES_ENDPOINT_LOCAL;
 
 
 @RunWith(SpringRunner.class)

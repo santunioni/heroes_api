@@ -1,9 +1,14 @@
 package santunioni.webflux.heroes_api.repository;
 
-import santunioni.webflux.heroes_api.document.Heroes;
+import santunioni.webflux.heroes_api.model.Hero;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Optional;
+
 @EnableScan
-public interface HeroesRepository extends CrudRepository<Heroes, String>{
+public interface HeroesRepository extends CrudRepository<Hero, String>{
+
+    Optional<Hero> findById(String id);
+
 }

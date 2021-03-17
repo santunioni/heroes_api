@@ -1,0 +1,14 @@
+spring:
+  application.name: 'My API Model'
+  profiles.active: 'dev'
+  api.endpoint: "/heroes/api/v1"
+
+server:
+  port: '1010'
+
+app:
+  message: 'This is the Primary Application Property for ${spring.application.name}'
+
+springdoc:
+  swagger-ui:
+    path: '${spring.api.endpoint}/swagger-ui.html'

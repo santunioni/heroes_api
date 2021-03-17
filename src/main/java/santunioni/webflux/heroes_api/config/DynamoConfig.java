@@ -17,13 +17,13 @@ public class DynamoConfig {
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;
 
-    @Value("${amazon.dynamodb.signingregion}")
-    private String amazonDynamoDBSigningRegion;
+    @Value("${amazon.aws.sign_in_region}")
+    private String amazonDynamoDBSignInRegion;
 
-    @Value("${aws_access_key_id}")
+    @Value("${amazon.aws.access_key}")
     private String amazonAWSAccessKey;
 
-    @Value("${aws_secret_access_key}")
+    @Value("${amazon.aws.secret_key}")
     private String amazonAWSSecretKey;
 
     @Bean
@@ -32,13 +32,16 @@ public class DynamoConfig {
                 = AmazonDynamoDBClientBuilder
                 .standard()
                 .withCredentials(
-                        new AWSStaticCredentialsProvider(amazonAWSCredentials())
-                );
+                        new AWSStaticCredentialsProvider(
+                                amazonAWSCredentials()
+                        ));
         if (!amazonDynamoDBEndpoint.isEmpty()) {
-            amazonDynamoDB.setEndpointConfiguration(
-                    new AwsClientBuilder.EndpointConfiguration(
-                            amazonDynamoDBEndpoint, amazonDynamoDBSigningRegion
-                    ));
+            amazonDynamoDB
+                    .setEndpointConfiguration(
+                            new AwsClientBuilder
+                                    .EndpointConfiguration(
+                                    amazonDynamoDBEndpoint,
+                                    amazonDynamoDBSignInRegion));
         }
         return amazonDynamoDB.build();
     }
@@ -46,7 +49,7 @@ public class DynamoConfig {
     @Bean
     public AWSCredentials amazonAWSCredentials() {
         return new BasicAWSCredentials(
-                amazonAWSAccessKey, amazonAWSSecretKey);
+                amazonAWSAccessKey,
+                amazonAWSSecretKey);
     }
-
 }
